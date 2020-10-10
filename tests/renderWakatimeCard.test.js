@@ -5,7 +5,7 @@ const { wakaTimeData } = require("./fetchWakatime.test");
 
 describe("Test Render Wakatime Card", () => {
   it("should render correctly", () => {
-    const card = renderWakatimeCard(wakaTimeData);
+    const card = renderWakatimeCard(wakaTimeData["languages"]);
 
     expect(card).toMatchInlineSnapshot(`
       "
@@ -112,16 +112,5 @@ describe("Test Render Wakatime Card", () => {
             </svg>
           "
     `);
-  });
-
-  it("should render translations", () => {
-    document.body.innerHTML = renderWakatimeCard({}, { locale: "cn" });
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Wakatime 周统计",
-    );
-    expect(
-      document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
-        .textContent,
-    ).toBe("本周没有编程活动");
   });
 });

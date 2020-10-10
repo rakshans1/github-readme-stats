@@ -49,8 +49,7 @@ const createTextNode = ({
   `;
 };
 
-const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+const renderWakatimeCard = (stats = [], options = { hide: [] }) => {
   const {
     hide_title = false,
     hide_border = false,
@@ -62,11 +61,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     hide_progress,
     custom_title,
-    locale,
+    colors,
   } = options;
 
   const i18n = new I18n({
-    locale,
+    locale: "en",
     translations: wakatimeCardLocales,
   });
 
@@ -81,17 +80,18 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const statItems = languages
-    ? languages
-        .filter((language) => language.hours || language.minutes)
-        .map((language) => {
+  const statItems = stats
+    ? stats
+        .filter((stat) => stat.hours || stat.minutes)
+        .map((stat) => {
+          const { color } = colors[stat.name] || {};
           return createTextNode({
-            id: language.name,
-            label: language.name,
-            value: language.text,
-            percent: language.percent,
-            progressBarColor: titleColor,
-            progressBarBackgroundColor: textColor,
+            id: stat.name,
+            label: stat.name,
+            value: stat.text,
+            percent: stat.percent,
+            progressBarColor: color || titleColor,
+            progressBarBackgroundColor: "#ededed",
             hideProgress: hide_progress,
           });
         })
