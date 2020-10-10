@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
     hide_title,
     hide_progress,
     custom_title,
+    layout
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -53,7 +54,8 @@ module.exports = async (req, res) => {
       bg_color,
       theme,
       hide_progress,
-      colors: colors[stat]
+      colors: colors[stat],
+      layout
     };
 
     const response = wakatimeCard(last7Days[stat], options);

@@ -102,10 +102,8 @@ describe("Test Render Wakatime Card", () => {
                 transform=\\"translate(0, 55)\\"
               >
                 
-          <svg x=\\"0\\" y=\\"0\\" width=\\"100%\\">
-            <g transform=\\"translate(0, 0)\\">
-          <text x=\\"25\\" y=\\"11\\" class=\\"stat bold\\" fill=\\"#333\\">No coding activity this week</text>
-        </g>
+          <svg x=\\"25\\" y=\\"0\\">
+            
           </svg> 
         
               </g>
